@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Design Notification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Notification container */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+            max-width: 350px;
+        }
+        
+        .notification-container .notification {
+            pointer-events: auto;
+        }
+        
+        /* Base notification styles */
+        .notification {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        /* Material Design style */
+        .material-notification {
+            background-color: white;
+            border-left: 4px solid #3f51b5;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .material-notification .icon {
+            color: #3f51b5;
+            font-size: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+        
+        .material-notification .content {
+            flex: 1;
+        }
+        
+        .material-notification .title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .material-notification .message {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .material-notification .close {
+            color: #999;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
+            margin-left: 12px;
+            cursor: pointer;
+        }
+        
+        /* Animation - slide from right */
+        .slide-in-right {
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s ease;
+        }
+        
+        .slide-in-right.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Progress bar */
+        .progress-bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #3f51b5;
+            width: 100%;
+            transition: width linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mb-5">
+        <h1>Material Design Notification</h1>
+        <p>Click the button below to see the notification</p>
+        
+        <div class="mb-3">
+            <button id="showMaterial" class="btn btn-primary">Show Notification</button>
+        </div>
+    </div>
+    
+    <!-- Notification container -->
+    <div id="notificationContainer" class="notification-container"></div>
+    
+    <!-- Material Design Notification Template -->
+    <template id="materialTemplate">
+        <div class="notification material-notification slide-in-right">
+            <div class="icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="content">
+                <div class="title">Information Update</div>
+                <div class="message">Your profile has been updated successfully.</div>
+            </div>
+            <button class="close">&times;</button>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('notificationContainer');
+            
+            // Helper function to show notification
+            function showNotification(delay = 5000) {
+                // Clone template
+                const template = document.getElementById('materialTemplate');
+                const notificationElement = template.content.cloneNode(true).children[0];
+                
+                // Add to container
+                container.appendChild(notificationElement);
+                
+                // Setup progress bar
+                const progressBar = notificationElement.querySelector('.progress-bar');
+                if (progressBar) {
+                    progressBar.style.width = '100%';
+                    progressBar.style.transition = `width ${delay}ms linear`;
+                    setTimeout(() => {
+                        progressBar.style.width = '0';
+                    }, 50);
+                }
+                
+                // Show with animation
+                setTimeout(() => {
+                    notificationElement.classList.add('show');
+                }, 10);
+                
+                // Set up auto-hide
+                setTimeout(() => {
+                    notificationElement.classList.remove('show');
+                    
+                    // Remove from DOM after animation
+                    setTimeout(() => {
+                        notificationElement.remove();
+                    }, 500);
+                }, delay);
+                
+                // Setup close button
+                const closeButton = notificationElement.querySelector('.close');
+                if (closeButton) {
+                    closeButton.addEventListener('click', () => {
+                        notificationElement.classList.remove('show');
+                        setTimeout(() => {
+                            notificationElement.remove();
+                        }, 500);
+                    });
+                }
+                
+                return notificationElement;
+            }
+            
+            // Material Design button
+            document.getElementById('showMaterial').addEventListener('click', () => {
+                showNotification();
+            });
+        });
+    </script>
+</body>
+</html>

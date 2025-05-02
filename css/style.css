@@ -1,0 +1,454 @@
+Template CSS:root {
+  --primary: #00B98E;
+  --secondary: #FF6922;
+  --light: #EFFDF5;
+  --dark: #0E2E50;
+}
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 45px;
+  bottom: 45px;
+  z-index: 99;
+}
+
+
+/* button */
+.btn.btn-primary,
+.btn.btn-secondary {
+  color: #FFFFFF;
+}
+
+
+
+/*** Icon ***/
+.icon {
+  padding: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF !important;
+  border-radius: 50px;
+  border: 1px dashed var(--primary) !important;
+}
+
+
+
+
+/*** Footer ***/
+footer {
+  width: 100%;
+  background-color: var(--dark);
+  /* Or a color matching your design */
+  /* padding: 20px; */
+  color: var(--light);
+  text-align: center;
+  position: relative;
+
+  bottom: 0;
+}
+
+
+.footer .btn.btn-social {
+  margin-right: 5px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 35px;
+  transition: .3s;
+}
+
+.footer .btn.btn-social:hover {
+  color: var(--primary);
+  border-color: var(--light);
+}
+
+.footer .btn.btn-link {
+  display: block;
+  margin-bottom: 5px;
+  padding: 0;
+  text-align: left;
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: capitalize;
+  transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+  position: relative;
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+  letter-spacing: 1px;
+  box-shadow: none;
+}
+
+.footer .form-control {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer .copyright {
+  padding: 25px 0;
+  font-size: 15px;
+  border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.footer .copyright a {
+  color: var(--light);
+}
+
+.footer .footer-menu a {
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.footer .footer-menu a:last-child {
+  margin-right: 0;
+  padding-right: 0;
+  border-right: none;
+}
+
+:root {
+  --primary-color: #2eca6a;
+  --secondary-color: #05213C;
+  --black-color: #292929;
+  --light-black-color: #343536;
+  --dark-color: #313131;
+  --body-color: #5A5A5A;
+  --gray-color: #777F81;
+  --light-color: #fdfdfd;
+
+  /* Bootstrap Theme Color  */
+  --bs-gray-100: #F6F6F6;
+  --bs-gray-300: #DCDCDC;
+  --bs-primary-text-emphasis: var(--primary-color);
+  --bs-body-color-rgb: 90, 90, 90;
+  --bs-light-rgb: rgba(255, 255, 255, 1);
+  --bs-dark-rgb: 41, 41, 41;
+  --bs-primary-rgb: 178, 142, 113;
+}
+
+.btn {
+  --bs-btn-padding-x: 4rem;
+  --bs-btn-padding-y: 1rem;
+  --bs-btn-font-size: 1rem;
+  --bs-btn-font-weight: 500;
+  text-transform: uppercase;
+
+  border-radius: 0px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* - Primary Buttons
+  --------------------------------------------------------------*/
+.btn-primary {
+  --bs-btn-color: var(--light-color);
+  --bs-btn-bg: var(--primary-color);
+  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-hover-color: var(--light-color);
+  --bs-btn-hover-bg: var(--primary-color);
+  --bs-btn-hover-border-color: var(--primary-color);
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: var(--light-color);
+  --bs-btn-active-bg: var(--primary-color);
+  --bs-btn-active-border-color: var(--primary-color);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: var(--light-color);
+  --bs-btn-disabled-bg: var(--primary-color);
+  --bs-btn-disabled-border-color: var(--primary-color);
+
+}
+
+/* - Button Hover Effect
+  --------------------------------------------------------------*/
+.btn-slide.btn-bg {
+  background-color: var(--light-color);
+
+}
+
+.btn-slide {
+  position: relative;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  padding: 1.5rem 3rem;
+  /* Increase padding for height and width */
+  font-size: 1.5rem;
+  /* Increase font size for larger text */
+  min-width: 150px;
+  /* Optional: Set a minimum width */
+  transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
+  /* transform: translateY(-50px); */
+  /* Moves the button 10px upwards */
+
+
+}
+
+.btn-slide.hover-slide-right::before {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 3%;
+  position: absolute;
+  content: "";
+  background-color: var(--primary-color);
+  transition: 0.3s ease-in-out;
+}
+
+.btn-slide span {
+  position: relative;
+  display: inline-block;
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+  transition: 0.3s;
+  font-weight: 700;
+  word-spacing: 0.5rem;
+}
+
+.btn-slide.hover-slide-right:hover::before {
+  width: 100%;
+
+}
+
+.btn-slide.hover-slide-right:hover span {
+  color: var(--light-color);
+}
+
+table.dataTable.display tbody tr.odd>.sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd>.sorting_1 {
+  background-color: #ffffff !important;
+}
+
+.property-service-img-wrap img {
+
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.property-service {
+  padding-left: 20px;
+}
+
+.property-service-title {
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+.property-service-description {
+  font-size: 18px;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.property-benefits-lists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.property-benefits-lists li {
+  font-size: 18px;
+}
+
+.our-service {
+  padding: 120px 0;
+}
+
+.section-heading-wrapper {
+  text-align: center;
+  margin-bottom: 50px !important;
+
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.service-content-cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.service-card-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(177, 177, 177, 0.1);
+  padding: 20px;
+
+  text-align: center;
+
+}
+
+.service-card-wrapper:hover {
+  box-shadow: 0px 0px 30px rgba(177, 177, 177, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.service-icon {
+  font-size: 40px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.service-card-wrapper h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin: 16px 0;
+}
+
+.service-card-wrapper p {
+  font-size: 20px;
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+.find-best-place {
+  padding: 120px 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/find-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.find-best-place-left {
+  max-width: 600px;
+}
+
+.find-best-place-left h2 {
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--light-color);
+  margin-bottom: 20px;
+}
+
+.find-best-place-left p {
+  font-size: 18px;
+  color: #bbbbbb;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.footer-col-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--light-color);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.footer-info-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.footer-info-wrap p {
+  font-size: 16px;
+  color: #f5f5f5;
+  margin-bottom: 0;
+}
+
+.footer-col-link-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.footer-col-link-wrap a {
+  color: #f5f5f5 !important;
+  font-size: 20px;
+}
+
+
+/* add breakpoint */
+@media (max-width: 768px) {
+
+  /* property benefit */
+  .property-benefits-lists {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .property-service {
+    padding-left: 0px;
+  }
+
+  .property-service-title {
+    font-size: 36px;
+  }
+
+  .property-service-description {
+    font-size: 18px;
+  }
+
+  /* service */
+  .our-service {
+    padding: 60px 0;
+  }
+
+  /* service title */
+  .section-title {
+    font-size: 36px;
+  }
+
+  /* service subtitle */
+  .section-subtitle {
+    font-size: 20px;
+  }
+
+
+
+  .find-best-place-left {
+    max-width: 100%;
+  }
+
+  .find-best-place-left h2 {
+    font-size: 36px;
+  }
+
+  .find-best-place-left p {
+    font-size: 18px;
+  }
+}

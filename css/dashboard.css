@@ -1,0 +1,339 @@
+.sidebar {
+    background-color: #6c5ce7;
+    color: white;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    
+    overflow-y: auto; /* Enables scrolling */
+    overflow-x: hidden;
+    
+    z-index: 1040;
+    transition: transform 0.3s ease-in-out;
+    padding-bottom: 60px; /* To ensure space below for logout button */
+}
+
+
+.sidebar-inner {
+    overflow-y: auto;
+    /* padding: 0px 0px 30px; */
+    /* padding-bottom: 50px; */
+    flex: 1 1 auto;
+}
+
+
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px  0px 10px 15px;
+    display: block;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background-color: #5a4ed8;
+}
+.attendant__action form {
+    display: inline-block;
+}
+
+
+.attendant__action {
+    display: flex;
+    gap: 10px; /* Adds spacing between buttons */
+    align-items: center; /* Ensures vertical alignment */
+}
+
+.attendant__action button {
+    
+    font-size: 14px; /* Ensure text consistency */
+    text-align: center;
+}
+
+/* Logout button styling */
+.logout-btn {
+    display: block;
+    margin: 60px auto 20px auto; /* Center the button */
+    
+    width: 80%;
+    text-align: center;
+    background-color: #ff4757;
+    color: white;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+   
+}
+.logout-container {
+   
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align from top */
+    padding-top: 40px;       /* Push it down */
+}
+.logout-btn:hover {
+    background-color: #e84142;
+    text-decoration: none;
+}
+
+
+/* Mobile-specific hidden sidebar */
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+.main-content {
+    margin-left: 300px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.full {
+    margin-left: 0;
+}
+
+.header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6c5ce7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+
+
+.card__wrapper {
+    background: #fff;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    
+    box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3);
+    position: relative;
+    margin-top: 40px;
+}
+
+.table__heading-title {
+    color: #362a2a;
+    font-weight: 700;
+    margin-top: 0px;
+    line-height: 1;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-control[readonly] {
+    background-color: #e9ecef;
+}
+
+.form-label,
+.col-form-label {
+    color: #362a2a;
+}
+
+.account-profile .avatar-preview {
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+
+.account-profile .avatar-preview>div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.account-profile .upload-link {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: var(--primary);
+    bottom: 0;
+    right: 0px;
+    border-radius: 6px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.account-profile .upload-link .update-flie {
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+    width: 100%;
+    cursor: pointer;
+    left: 0;
+    height: 100%;
+}
+
+.fs-update {
+    font-size: 1rem !important;
+    line-height: 1.6;
+}
+
+.form-control {
+    color: #7e7e7e;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    border-color: #dad8d4;
+    height: 2.813rem;
+    border-radius: 0.5rem;
+    
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    appearance: none;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:hover,
+.form-control:focus,
+.form-control.active {
+    box-shadow: none;
+    outline: none;
+    border-color: #dad8d4;
+}
+
+
+.account-profile .avatar-preview {
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+
+
+/* Admin table */
+.card__wrapper {
+    background: #fff;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 30px rgba(182, 186, 203, 0.3);
+    position: relative;
+    margin-top: 40px;
+}
+
+.table__heading-title {
+    color: #362a2a;
+    font-weight: 700;
+    margin-top: 0px;
+    line-height: 1;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.attendant__wrapper {
+    overflow-x: auto !important;
+
+}
+
+.attendant__wrapper table {
+    width: 100%;
+    border-spacing: 0px 10px;
+    border-collapse: separate;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: none !important;
+}
+
+table.dataTable.no-footer {
+    border-bottom: none !important;
+    
+}
+
+.attendant__wrapper table thead {
+    background-color: #f8f9fd;
+}
+
+.attendant__wrapper table thead tr th {
+    font-size: 15px;
+    font-weight: 600;
+    color: #362a2a;
+    padding: 15px 20px;
+}
+
+.attendant__wrapper tbody tr {
+    background-color: #fff !important;
+    border-radius: 4px;
+    transition: all 0.3s ease-out 0s;
+    
+
+}
+
+.attendant__wrapper tbody tr:hover {
+    background-color: rgba(108, 95, 252, 0.1) !important;
+}
+
+table.dataTable.display tbody tr>.sorting_1 {
+    background-color: white !important;
+    transition: all 0.3s ease;
+}
+
+table.dataTable.display tbody tr:hover>.sorting_1 {
+    background-color: transparent !important;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        overflow-y: auto; /* Ensure it still scrolls in mobile */
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
+
+
+/* Admin table */
