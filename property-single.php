@@ -1,23 +1,58 @@
 <?php
+include_once 'php-class-file/SessionManager.php';
+$session = SessionStatic::class;
+
 // Include necessary PHP class files (adjust paths as needed)
 include_once 'php-class-file/User.php';
 include_once 'php-class-file/Property.php';
 include_once 'php-class-file/FileManager.php';
 include_once 'php-class-file/UserDetails.php';
+include_once 'php-class-file/Comment.php';
+include_once 'pop-up.php';
 
-// $session = new SessionManager();
+if ($session::get('msg1') != null) {
+  showPopup($session::get('msg1'));
+  $session::delete('msg1');
+}
+
+// Retrieve user session object
+$sUser = $session::getObject("user");
+$loggedInUser = new User();
+$loggedInUser->user_id = 0;
+if ($sUser != null) {
+  $loggedInUser->user_id = $sUser->user_id;
+}
 
 $property = new Property();
 $user = new User();
 $userDetails = new UserDetails();
+$comment = new Comment();
+$allComments = null;
 
 $imageFiles;
 $videoFile;
 
+if (isset($_POST['submit_comment'])) {
+  $comment->property_id = $_POST['property_id'];
+  $comment->user_id = $_POST['user_id'];
+  $comment->comment = $_POST['comment'];
+  $comment->status = 1;
+  $result = $comment->insert();
+  if ($result) {
+    $session::set('msg1', 'Comment posted successfully!');
+    echo "<script>window.location.href='property-single.php?propertyId=" . $_POST['property_id'] . "';</script>";
+    exit();
+  } else {
+    $session::set('msg1', 'Failed to post comment. Please try again.');
+    echo "<script>window.location.href='property-single.php?propertyId=" . $_POST['property_id'] . "';</script>";
+    exit();
+  }
+}
+
 if (isset($_GET['propertyId'])) {
   $property->property_id = $_GET['propertyId'];
+  $allComments = $comment->getCommentsByFilters(null, $property->property_id, 1);
   $property->getByPropertyIdAndStatus($property->property_id);
-
   $user->user_id = $property->user_id;
   $user->setValue();
   $userDetails->setValueByUserId($user->user_id);
@@ -206,7 +241,8 @@ if (isset($_GET['propertyId'])) {
                       <span><?php echo $property->property_id; ?></span>
                     </li>
                     <li class="d-flex justify-content-between">
-                      <strong>Property Area Category:<?php // echo $property->property_category; ?></strong>
+                      <strong>Property Area Category:<?php // echo $property->property_category; 
+                                                      ?></strong>
                       <?php
                       $catCode = $property->property_category; // e.g. 'residential' or 'commercial'
                       if ($catCode == 'residential_area') {
@@ -336,14 +372,74 @@ if (isset($_GET['propertyId'])) {
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
     </div>
   </section>
+
+  <!-- Comment Section Start -->
+  <section id="comments" class="container my-5">
+    <h3 class="mb-4">Comments</h3>
+
+    <?php if (!empty($allComments)): ?>
+      <?php foreach ($allComments as $c):
+        $comment->setProperties($c);
+        $tempUserDetails = new UserDetails();
+        $tempUserDetails->user_id = $c['user_id'];
+        $tempUserDetails->setValueByUserId($c['user_id'], 1);
+      ?>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-1 text-primary">
+              <?php echo $tempUserDetails->full_name; ?>
+            </h6>
+            <p class="card-text"><?php echo $comment->comment; ?></p>
+            <small class="text-muted"><?php echo $comment->created; ?></small>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <p class="text-muted">No comments yet. Be the first to comment!</p>
+    <?php endif; ?>
+
+    <hr>
+
+    <?php if ($loggedInUser->user_id != 0): ?>
+      <h4 class="mt-4">Leave a Comment <?php echo $loggedInUser->user_id; ?></h4>
+      <form method="post" action="">
+        <input
+          type="hidden"
+          name="property_id"
+          value="<?php echo $property->property_id; ?>">
+        <input
+          type="hidden"
+          name="user_id"
+          value="<?php echo $loggedInUser->user_id; ?>">
+        <div class="mb-3">
+          <label for="comment_text" class="form-label">Your Comment</label>
+          <textarea
+            name="comment"
+            id="comment_text"
+            class="form-control"
+            rows="4"
+            required></textarea>
+        </div>
+        <button
+          type="submit"
+          name="submit_comment"
+          class="btn btn-primary">
+          Post Comment
+        </button>
+      </form>
+    <?php else: ?>
+      <p class="text-danger">
+        You must <a href="login.php">log in</a> to leave a comment.
+      </p>
+    <?php endif; ?>
+  </section>
+  <!-- Comment Section End -->
+
+
+
 
   <!-- Footer Start -->
   <footer>

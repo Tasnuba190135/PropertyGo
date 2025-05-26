@@ -7,6 +7,7 @@ include_once 'FileManager.php';
 include_once 'NoteManager.php';
 include_once 'PostLimit.php';
 include_once 'Admin.php';
+include_once 'Comment.php';
 
 
 // session 1
@@ -55,6 +56,13 @@ include_once 'Admin.php';
 // $admin->createSuperAdmin();
 // echo "Super Admin record inserted successfully";
 // echo "<br><br><br>";
+
+// $comment = new Comment();
+// $comment->createTableMinimal();
+// $comment->alterTableAddColumns();
+// echo "Table created successfully";
+// echo "<br><br><br>";
+
 
 // // session 2
 

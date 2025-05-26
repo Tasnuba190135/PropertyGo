@@ -1,2 +1,1 @@
-# PropertyGo
-Property Go
+# Property-Go
